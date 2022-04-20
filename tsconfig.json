@@ -21,7 +21,13 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "visaulvaultlibrary": [
+        "dist/visaulvaultlibrary/visaulvaultlibrary",
+        "dist/visaulvaultlibrary"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

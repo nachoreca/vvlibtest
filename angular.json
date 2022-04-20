@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -97,6 +100,37 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "visaulvaultlibrary": {
+      "projectType": "library",
+      "root": "projects/visaulvaultlibrary",
+      "sourceRoot": "projects/visaulvaultlibrary/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/visaulvaultlibrary/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/visaulvaultlibrary/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/visaulvaultlibrary/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/visaulvaultlibrary/src/test.ts",
+            "tsConfig": "projects/visaulvaultlibrary/tsconfig.spec.json",
+            "karmaConfig": "projects/visaulvaultlibrary/karma.conf.js"
           }
         }
       }
