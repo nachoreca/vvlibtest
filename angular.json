@@ -1,36 +1,68 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "nacholibrary": {
+    "vv-lib": {
+      "projectType": "library",
+      "root": "projects/vv-lib",
+      "sourceRoot": "projects/vv-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/vv-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/vv-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/vv-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/vv-lib/src/test.ts",
+            "tsConfig": "projects/vv-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/vv-lib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "testing": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
         "@schematics/angular:application": {
           "strict": true
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/testing",
+      "sourceRoot": "projects/testing/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/nacholibrary",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/testing",
+            "index": "projects/testing/src/index.html",
+            "main": "projects/testing/src/main.ts",
+            "polyfills": "projects/testing/src/polyfills.ts",
+            "tsConfig": "projects/testing/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/testing/src/favicon.ico",
+              "projects/testing/src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "projects/testing/src/styles.scss"
             ],
             "scripts": []
           },
@@ -50,8 +82,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/testing/src/environments/environment.ts",
+                  "with": "projects/testing/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -71,10 +103,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nacholibrary:build:production"
+              "browserTarget": "testing:build:production"
             },
             "development": {
-              "browserTarget": "nacholibrary:build:development"
+              "browserTarget": "testing:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,59 +114,29 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nacholibrary:build"
+            "browserTarget": "testing:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "projects/testing/src/test.ts",
+            "polyfills": "projects/testing/src/polyfills.ts",
+            "tsConfig": "projects/testing/tsconfig.spec.json",
+            "karmaConfig": "projects/testing/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/testing/src/favicon.ico",
+              "projects/testing/src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "projects/testing/src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
-    },
-    "visaulvaultlibrary": {
-      "projectType": "library",
-      "root": "projects/visaulvaultlibrary",
-      "sourceRoot": "projects/visaulvaultlibrary/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/visaulvaultlibrary/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/visaulvaultlibrary/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/visaulvaultlibrary/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/visaulvaultlibrary/src/test.ts",
-            "tsConfig": "projects/visaulvaultlibrary/tsconfig.spec.json",
-            "karmaConfig": "projects/visaulvaultlibrary/karma.conf.js"
-          }
-        }
-      }
     }
   },
-  "defaultProject": "nacholibrary"
+  "defaultProject": "vv-lib"
 }

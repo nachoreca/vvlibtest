@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/nacholibrary'),
+      dir: require('path').join(__dirname, '../../coverage/vv-lib'),
       subdir: '.',
       reporters: [
         { type: 'html' },

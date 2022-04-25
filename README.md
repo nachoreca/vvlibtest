@@ -1,6 +1,6 @@
-# Nacholibrary
+# LibProj
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
 ## Development server
 
@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Commands used to create it
+npx -p @angular/cli@12.2.5 ng new lib-proj --create-application=false
+
+npx generate library vv-lib
+
+--
+optional, create another module and also include export in api.ts
+ng g module another-vv-lib
+ng g c another-vv-lib --project vv-lib
+
+--
+
+ng g application testing
+(copy distributable output to node_modules so import in testing app can find it)
+---
+(strictPropertyInitialization false in tsconfig.lib.json)
+npx ng build vv-lib
